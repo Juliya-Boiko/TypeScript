@@ -1,14 +1,14 @@
-// const input1 = document.getElementById('input1') ! as HTMLInputElement;
-// const input2 = document.getElementById('input2') ! as HTMLInputElement;
-// const addBtn = document.getElementById('addBtn') ! as HTMLButtonElement;
+const input1 = document.getElementById('input1') ! as HTMLInputElement;
+const input2 = document.getElementById('input2') ! as HTMLInputElement;
+const addBtn = document.getElementById('addBtn') ! as HTMLButtonElement;
 
-// function addValues (a: number, b: number) {
-//   return a + b;
-// };
+function addValues (a: number, b: number) {
+  return a + b;
+};
 
-// addBtn.addEventListener('click', function() {
-//   console.log(addValues(+input1.value, +input2.value));
-// })
+addBtn.addEventListener('click', function() {
+  console.log(addValues(+input1.value, +input2.value));
+})
 
 let age: number = 50;
 let userName: string = 'Max';
@@ -39,7 +39,7 @@ let union: string | number;
 // Сделайте переменную, которая может принимать только одно значение из двух 'enable' или 'disable'
 let literal: 'enable' | 'disable';
 
-function showMessage(message): void {
+function showMessage(message: string): void {
   console.log(message);
 }
 
