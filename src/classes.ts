@@ -1,42 +1,42 @@
-class House {
-  public tenants: string[] = [];
+// class House {
+//   public tenants: string[] = [];
 
-  constructor(private type: string, private street: string ) {
-  };
+//   constructor(private type: string, private street: string ) {
+//   };
 
-  public showType(this: House): void {
-    console.log(this.type);
-  };
+//   public showType(this: House): void {
+//     console.log(this.type);
+//   };
 
-  public showAddress(this: House): void {
-    console.log(this.street);
-  };
+//   public showAddress(this: House): void {
+//     console.log(this.street);
+//   };
 
-  public addTenant(value: string): void {
-    this.tenants.push(value);
-  };
+//   public addTenant(value: string): void {
+//     this.tenants.push(value);
+//   };
 
-  public showTenants(this: House): void {
-    console.log(this.tenants);
-  };
-};
+//   public showTenants(this: House): void {
+//     console.log(this.tenants);
+//   };
+// };
 
-class StoneHouse extends House { 
-  private chargeHouse: string;
+// class StoneHouse extends House { 
+//   private chargeHouse: string;
 
-  constructor(value: string, general: string) {
-    super('stone', value);
+//   constructor(value: string, general: string) {
+//     super('stone', value);
 
-    this.chargeHouse = general
-  };
+//     this.chargeHouse = general
+//   };
 
-  showCharge(): void {
-    console.log(this.chargeHouse);
-  };
+//   showCharge(): void {
+//     console.log(this.chargeHouse);
+//   };
 
-};
+// };
 
-const myHouse = new House('stone', 'Kulika street');
+// const myHouse = new House('stone', 'Kulika street');
 // house1.showAddress(); 
 
 // house1.addTenant('Polly');
@@ -190,9 +190,66 @@ const myHouse = new House('stone', 'Kulika street');
 //   return a + b;
 // };
 
-interface AddFunc {
-  (item1: number, item2: number): number;
-};
-const foo: AddFunc = (a: number, b: number) => {
-  return a + b;
-};
+// interface AddFunc {
+//   (item1: number, item2: number): number;
+// };
+// const foo: AddFunc = (a: number, b: number) => {
+//   return a + b;
+// };
+
+//========================== PRACTICE
+
+// class Key {
+//   signature: number;
+
+//   constructor() {
+//     this.signature = Math.random();
+//   };
+
+//   getSignature(): number {
+//     return this.signature;
+//   }
+// };
+
+// class Person {
+//   constructor (private key: Key) {}
+
+//   getKey(): Key {
+//     return this.key;
+//   }
+// };
+
+// abstract class House {
+//   protected door: boolean = false;
+//   private tenants: Person[] = [];
+
+//   constructor(protected key: Key) {};
+
+//   comeIn(person: Person):void {
+//     if (!this.door) {
+//       throw new Error('Door is closed');
+//     }
+//     this.tenants.push(person);
+//     console.log('Person inside');
+//   };
+
+//   abstract openDoor(key: Key): boolean;
+// };
+
+// class MyHouse extends House {
+//   openDoor(key: Key) {
+//     if (key.getSignature() !== this.key.getSignature()) {
+//       throw new Error('Key to another door');
+//     }
+//     return this.door = true;
+//   }
+// }
+
+// const key = new Key();
+// const house = new MyHouse(key);
+// const person = new Person(key);
+
+// house.openDoor(person.getKey());
+
+// house.comeIn(person);
+

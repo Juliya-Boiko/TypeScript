@@ -1,44 +1,48 @@
 "use strict";
-class House {
-    constructor(type, street) {
-        this.type = type;
-        this.street = street;
-        this.tenants = [];
-    }
-    ;
-    showType() {
-        console.log(this.type);
-    }
-    ;
-    showAddress() {
-        console.log(this.street);
-    }
-    ;
-    addTenant(value) {
-        this.tenants.push(value);
-    }
-    ;
-    showTenants() {
-        console.log(this.tenants);
-    }
-    ;
-}
-;
-class StoneHouse extends House {
-    constructor(value, general) {
-        super('stone', value);
-        this.chargeHouse = general;
-    }
-    ;
-    showCharge() {
-        console.log(this.chargeHouse);
-    }
-    ;
-}
-;
-const myHouse = new House('stone', 'Kulika street');
-;
-const foo = (a, b) => {
-    return a + b;
+const randomNumber = () => {
+    const random = Math.random();
+    return random;
 };
+class Key {
+    constructor() {
+        this.signature = randomNumber();
+    }
+    getSignature() {
+        return this.signature;
+    }
+}
+;
+const key = new Key();
+const customKey = key.getSignature();
+class Person {
+    constructor(value) {
+        this.key = value;
+    }
+    getKey() {
+        return this.key;
+    }
+}
+;
+const man = new Person(customKey);
+const access = man.getKey();
+class House {
+    constructor(value) {
+        this.door = false;
+        this.tenants = [];
+        this.key = value;
+    }
+    ;
+    comeIn(person) {
+        this.tenants.push(person);
+    }
+    ;
+}
+;
+class MyHouse extends House {
+    openDoor(value) {
+        if (value === this.key) {
+            this.door === true;
+        }
+    }
+}
 //# sourceMappingURL=classes.js.map
