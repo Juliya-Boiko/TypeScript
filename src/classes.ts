@@ -1,255 +1,453 @@
+// class Zhiguli_8 {
+//   private needRepair = false;
+//   private maxEngineLoad = 3;
+
+//   private checkEngine () {
+//     if (this.needRepair) {
+//       console.log('Engine not work');
+//     }
+
+//     const engineLoad = Math.floor(Math.random() * this.maxEngineLoad) + 1;
+//     if (this.maxEngineLoad === engineLoad) {
+//       this.needRepair = true;
+//       console.log('Engine broken again');
+//     }
+//   }
+
+//   public startEngine () {
+//     this.checkEngine();
+//     console.log('Ta-ta-ta-ta');
+//   }
+
+//   public repairEngine () {
+//     this.needRepair = false;
+//     console.log('Engine rebuilt');
+//   }
+// }
+
+// const myZhiguli = new Zhiguli_8();
+
+// =========================================================================
+
 // class House {
-//   public tenants: string[] = [];
+//   street: string;
 
-//   constructor(private type: string, private street: string ) {
-//   };
+//   constructor(value: string) {
+//     this.street = value;
+//   }
 
-//   public showType(this: House): void {
-//     console.log(this.type);
-//   };
-
-//   public showAddress(this: House): void {
+//   showAddress() {
 //     console.log(this.street);
-//   };
+//   }
+// };
 
-//   public addTenant(value: string): void {
+// const house = new House('Medova');
+// house.showAddress();
+
+// house.street = 'Kulika'
+// house.showAddress();
+
+// =========================================================================
+// --- public - это как все свойства и методы в js можно вызывать где угодно
+// --- private - нельзя вызвать извне экземпляра не наследуется
+// --- protected - нельзя вызвать извне экземпляра но наследуется
+
+// class C {
+//   protected someProperty = 'str';
+// }
+
+// class D extends C {
+//   showProperty () {
+//     console.log(this.someProperty);
+//   }
+// }
+
+// const a = new A();
+// const b = new B();
+// const c = new C();
+// const d = new D();
+
+// d.showProperty();
+
+// =========================================================================
+
+// class House {
+//   private type: string;
+//   private street: string;
+//   private tenants: string[] = [];
+
+//   constructor(type: string, value: string) {
+//     this.type = type;
+//     this.street = value;
+//   }
+
+//   public showType(this: House) {
+//     console.log(this.type);
+//   }
+
+//   public showAddress (this: House) {
+//     console.log(this.street);
+//   }
+
+//   public addTenant (value: string) {
 //     this.tenants.push(value);
-//   };
+//   }
 
-//   public showTenants(this: House): void {
+//   public showTenants () {
 //     console.log(this.tenants);
-//   };
-// };
+//   }
+// }
 
-// class StoneHouse extends House { 
-//   private chargeHouse: string;
+// const house = new House('stone', 'Medova');
+// house.addTenant('polly')
+// house.addTenant('mango')
 
-//   constructor(value: string, general: string) {
-//     super('stone', value);
+// console.log(house)
 
-//     this.chargeHouse = general
-//   };
+// =========================================================================
 
-//   showCharge(): void {
-//     console.log(this.chargeHouse);
-//   };
+// class House {
+//   private tenants:string[] = [];
 
-// };
+//   constructor (private readonly type: string, private street: string) {}
 
-// const myHouse = new House('stone', 'Kulika street');
-// house1.showAddress(); 
+//   public showAddress (this: House) {
+//     console.log(this.street);
+//   }
 
-// house1.addTenant('Polly');
-// house1.showTenants();
-// house1.addTenant('Mango');
-// house1.showTenants();
+//   public showType (this: House) {
+//     console.log(this.type);
+//   }
 
-//==========================
+//   public addTenant (tenant: string) {
+//     this.tenants.push(tenant);
+//   }
 
-// class UseClass {
-//   private static count: number = 0;
+//   public showTenants () {
+//     console.log(this.tenants);
+//   }
+// }
 
-//   constructor() {
-//     UseClass.count += 1;
+// class StoneHouse extends House  {
+//   private chargeOfTheHouse: string;
+
+//   constructor (street: string, generalTenant: string) {
+//     super('stone', street); // Вызов родительского конструктора
+//     // Добавляем владельца квартиры
+//     this.chargeOfTheHouse = generalTenant;
+//     this.addTenant(generalTenant);
+//   }
+
+//   public showTenants () {
+//     console.log('General: ' + this.chargeOfTheHouse);
+//     super.showTenants();
+//   }
+// }
+
+// const stoneHouse = new StoneHouse('Stone-world', 'Max');
+
+// stoneHouse.addTenant('Anton');
+// stoneHouse.addTenant('Nikita');
+
+// stoneHouse.showTenants();
+// stoneHouse.showType();
+// stoneHouse.showAddress();
+
+// =========================================================================
+
+// type PersonInformation = {
+//   firstName?: string;
+//   lastName?:  string;
+// }
+
+// class Person {
+//   private personInfo: PersonInformation = {};
+
+//   set firstName (value: string) {
+//     console.log('firstName added');
+//     this.personInfo.firstName = value;
+//   }
+
+//   set lastName (value: string) {
+//     console.log('lastName added');
+//     this.personInfo.lastName = value;
+//   }
+
+//   get getInfo () {
+//     return this.personInfo;
+//   }
+// }
+
+// const newPerson = new Person();
+// console.log(newPerson);
+// newPerson.firstName = 'polly'
+// newPerson.lastName = 'polieva';
+// console.log(newPerson.getInfo);
+
+// =========================================================================
+
+// class UseStatic {
+//   private static count = 0;
+
+//   constructor () {
+//     UseStatic.count += 1;
+//   }
+
+//   public static itStaticMethod () {
+//     console.log('Run static method');
 //   }
 
 //   public showCount () {
-//     console.log(UseClass.count);
-//   } 
+//     console.log(UseStatic.count);
+//   }
 // }
 
-// const newClass = new UseClass();
-// newClass.showCount();
+// const obj1 = new UseStatic();
+// const obj2 = new UseStatic();
+// const obj3 = new UseStatic();
 
-//==========================
+// obj1.showCount();
+// obj2.showCount();
+// obj3.showCount();
 
+// UseStatic.itStaticMethod();
+
+// =========================================================================
+// сам по себе он никогда не будет создавать экземпляры, 
+//только его дочерние классы
 // abstract class Plane {
 //   protected pilotInCabin: boolean = false;
 
-//   public sitInCabin(): void {
+//   public sitInPlane () {
 //     this.pilotInCabin = true;
-//   };
+//   }
 
-//   public abstract startEngine(): string;
-// };
+//   public abstract startEngine(): boolean;
+// }
 
 // class Maize extends Plane {
-//   public startEngine() {
-//     return 'Ra-ta-ta';
+//   public startEngine () {
+//     return true;
 //   }
-// };
+// }
 
 // class Boeing extends Plane {
-//   public startEngine() {
-//     return 'Vruuuum';
+//   public startEngine () {
+//     return true;
+//   }
+// }
+
+// =========================================================================
+
+// interface IPerson {
+//   name: string;
+//   age: number;
+
+//   greet(phrase: string): void;
+// }
+
+// let user: IPerson;
+
+// user = {
+//   name: 'Anthony',
+//   age: 21,
+
+//   greet(phrase) {
+//     console.log(phrase + ' ' + this.name );
 //   }
 // };
 
-// const maize = new Maize();
-// const boeing = new Boeing();
+// user.greet('Всем привет я');
 
+//====
 
-//==========================
-
-// interface IPerson {
-//   readonly name: string,
-//   age: number,
-//   greeting(value: string): void,
-// };
-
-// let user: IPerson;
-
-// user = {
-//   name: 'Polly',
-//   age: 33,
-//   greeting() {
-//     return `Hello ${this.name}`;
-//   };
-// }
-
-//==========================
 // type IPerson = {
-//   name: string,
-//   age: number
-//   greeting: (value: string) => void,
+//   name: string;
+//   age: number;
+
+//   greet(phrase: string): void;
 // }
 
 // let user: IPerson;
 
 // user = {
-//   name: 'Mango',
-//   age: 11,
-//   greeting() {
-//     return `Welcome ${this.name}`;
+//   name: 'Anthony',
+//   age: 21,
+
+//   greet(phrase) {
+//     console.log(phrase + ' ' + this.name );
 //   },
 // };
 
-//==========================
-
+// =========================================================================
 // interface IPerson {
-//   readonly name: string,
-//   age: number,
-//   greeting(value: string): void,
-// };
+//   name: string;
+//   age: number;
+
+//   greet(phrase: string): void;
+// }
 
 // interface IPilot {
-//   pylotMessage(): void;
-// };
+//   flyMessage(): void;
+// }
 
 // class Pilot implements IPerson, IPilot {
-//   constructor(
-//     public readonly name: string,
-//     public age: number) {
-//       this.checkAge();
-//     };
-  
-//   private checkAge() {
+//   constructor (public name: string, public age: number) {
 //     if (this.age < 28) {
 //       throw new Error('Pilot to young');
 //     }
 //   }
 
-//   public greeting(): void {
-//     console.log(`Lets fly ${this.name}`);
+//   greet(phrase: string): void {
+//     console.log(phrase + ' ' + this.name );
 //   };
 
-//   public pylotMessage(): void {
-//     console.log(`Lets fly away`);
+//   flyMessage(): void {
+//     console.log('Самолет набрал высоту, всем приятного полета!');
+//   };
+// }
+
+// const pilot = new Pilot('Anthony', 32);
+
+// pilot.greet('Вас приветствует капитан корабля');
+// pilot.flyMessage();
+
+// =========================================================================
+
+// interface IPerson {
+//   name: string;
+//   age: number;
+
+//   greet(phrase: string): void;
+// }
+
+// interface IPilot {
+//   flyMessage(): void;
+// }
+
+// class Pilot implements IPerson, IPilot {
+//   constructor (public name: string, public age: number) {
+//     if (this.age < 28) {
+//       throw new Error('Pilot too young');
+//     }
+//   }
+
+//   greet(phrase: string): void {
+//     console.log(phrase + ' ' + this.name );
+//   };
+
+//   flyMessage(): void {
+//     console.log('Самолет набрал высоту, всем приятного полета!');
 //   };
 // }
 
 // abstract class Plane {
-//   protected pilot?: IPilot;
+//   protected pilot?:IPilot;
 
-//   public sitInCabin(value: IPilot): void {
-//     this.pilot = value;
-//   };
+//   public sitInPlane (pilot: IPilot):void {
+//     this.pilot = pilot;
+//   }
 
 //   public abstract startEngine(): boolean;
-// };
+// }
 
 // class Boeing extends Plane {
-//   public startEngine() {
+//   public startEngine (): boolean {
 //     if (!this.pilot) {
 //       throw new Error('No pilot in cabin');
-//     };
-//     this.pilot.pylotMessage();
+//     }
+//     // Разогреваем реактивные турбины
+//     console.log('Запуск турбин');
+
+//     this.pilot.flyMessage();
 //     return true;
-//   };
-// };
+//   }
+// }
 
-// const pilot = new Pilot('Max', 32);
-// const boeing = new Boeing();
-// boeing.sitInCabin(pilot);
-// boeing.startEngine();
+// =========================================================================
 
-//==========================
+// interface IPerson {
+//   name: string;
+//   age: number;
 
-// type AddFunc = (item1: number, item2: number) => number;
-// const foo: AddFunc = (a: number, b: number) => {
-//   return a + b;
-// };
+//   greet(phrase: string): void;
+// }
 
+// interface IPilot extends IPerson {
+//   flyMessage(): void;
+// }
+
+// =========================================================================
+// type AddFunc = (n1: number, n2: number) => number;
+
+// let add: AddFunc;
+
+// add = (n1:number, n2: number) => {
+//   return n1 + n2;
+// }
+
+// =========================================================================
 // interface AddFunc {
-//   (item1: number, item2: number): number;
-// };
-// const foo: AddFunc = (a: number, b: number) => {
-//   return a + b;
-// };
+//   (n1: number, n2: number): number;
+// }
 
-//========================== PRACTICE
+// let add: AddFunc;
 
+// add = (n1:number, n2: number) => {
+//   return n1 + n2;
+// }
+
+// =========================================================================
 // class Key {
-//   signature: number;
+//   protected signature: number;
 
 //   constructor() {
 //     this.signature = Math.random();
-//   };
+//   }
 
 //   getSignature(): number {
 //     return this.signature;
 //   }
-// };
+// }
+// const key = new Key();
+// //console.log();
 
 // class Person {
-//   constructor (private key: Key) {}
+//   protected key: Key;
+
+//   constructor(value: Key) {
+//     this.key = value;
+//   }
 
 //   getKey(): Key {
 //     return this.key;
 //   }
-// };
+// }
+// const newPerson = new Person(key);
+// //console.log(newPerson.getKey());
 
 // abstract class House {
 //   protected door: boolean = false;
-//   private tenants: Person[] = [];
+//   protected key: Key;
+//   protected tenants: Person[] = [];
 
-//   constructor(protected key: Key) {};
-
-//   comeIn(person: Person):void {
-//     if (!this.door) {
-//       throw new Error('Door is closed');
-//     }
-//     this.tenants.push(person);
-//     console.log('Person inside');
-//   };
-
-//   abstract openDoor(key: Key): boolean;
-// };
-
-// class MyHouse extends House {
-//   openDoor(key: Key) {
-//     if (key.getSignature() !== this.key.getSignature()) {
-//       throw new Error('Key to another door');
-//     }
-//     return this.door = true;
+//   constructor(key: Key) {
+//     this.key = key;
 //   }
+  
+//   comeIn(person: Person) {
+//     if (this.door) {
+//       this.tenants.push(person);
+//     }
+//   }
+
+//   public abstract openDoor(value: Key): void; 
 // }
 
-// const key = new Key();
-// const house = new MyHouse(key);
-// const person = new Person(key);
-
-// house.openDoor(person.getKey());
-
-// house.comeIn(person);
-
+// class MyHouse extends House {
+//   public openDoor(value: Key) {
+//     if (value.getSignature() === this.key.getSignature()) {
+//       this.door = true;
+//     }
+//   }
+// }
