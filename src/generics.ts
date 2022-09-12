@@ -4,15 +4,15 @@
 
 //============================================================================
 
-const promise: Promise<string> = new Promise((resolve) => {
-  setInterval(() => {
-    resolve('Done!');
-  }, 1000);
-});
+// const promise: Promise<string> = new Promise((resolve) => {
+//   setInterval(() => {
+//     resolve('Done!');
+//   }, 1000);
+// });
 
-promise.then((data) => {
-  console.log(data);
-});
+// promise.then((data) => {
+//   console.log(data);
+// });
 
 //============================================================================
 
