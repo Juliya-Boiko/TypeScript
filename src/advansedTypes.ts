@@ -187,3 +187,37 @@
 
 //============================================================================
 //============================================================================
+
+// const moveZeros = (arr: Array<number>): Array<number> => {
+//   const firstLenght = arr.length;
+//   const filtered = arr.filter(item => item !== 0);
+//   const mutatedArr = [...filtered];
+//   for (let i = filtered.length; i < firstLenght; i++) {
+//     mutatedArr.push(0);
+//   }
+//   console.log(mutatedArr);
+//   return arr;
+// }
+
+// moveZeros([1,2,0,1,0,1,0,3,0,1]);
+
+
+// const sumIntervals = (arr: Array<Array<number>>): number => {
+//   let total = 0;
+//   arr.forEach(item => total += item[1] - item[0]);
+//   console.log(total);
+//   return total;
+// }
+
+
+// sumIntervals([
+//   [1, 2],
+//   [6, 10],
+//   [11, 15]
+// ]);
+
+// sumIntervals( [
+//     [1,2],
+//     [6, 10],
+//     [11, 15]
+//  ] ) => 9
